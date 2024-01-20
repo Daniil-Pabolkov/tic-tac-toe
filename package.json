@@ -12,6 +12,7 @@
     "dev:vue": "yarn namespace vue-client vite",
     "dev:react": "yarn namespace react-client vite",
     "dev:svelte": "yarn namespace svelte-client vite",
+    "test": "vitest",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
