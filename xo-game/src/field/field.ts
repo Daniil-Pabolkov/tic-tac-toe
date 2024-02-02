@@ -1,14 +1,14 @@
 import type { FieldInterface, CellInterface } from './types';
 import { Cell, UnavailableCell } from './cell';
 
-export class Field<CellOwner> implements FieldInterface<CellOwner> {
-  private readonly cells: CellInterface<CellOwner>[];
+export class Field<CellContent> implements FieldInterface<CellContent> {
+  private readonly cells: CellInterface<CellContent>[];
 
   constructor(private size: number = 3) {
-    this.cells = new Array(Math.pow(this.size, 2))
-      .fill(null)
+    this.cells = Array(this.size ** 2)
+      .fill(void 0)
       .map(() => {
-        return new Cell<CellOwner>();
+        return new Cell<CellContent>();
       });
   }
 
@@ -27,8 +27,7 @@ export class Field<CellOwner> implements FieldInterface<CellOwner> {
       return new UnavailableCell();
     }
 
-    // Возвращаемый index всегда в рамках размерности поля
-    return this.cells[index]!;
+    return this.cells[index] ?? new UnavailableCell();
   }
 
   private getCellIndex(row: number, col: number): number | null {

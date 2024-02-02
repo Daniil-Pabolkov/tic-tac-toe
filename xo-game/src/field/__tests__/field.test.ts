@@ -28,37 +28,37 @@ describe('Check field rules', () => {
     ).toBeTruthy();
   });
 
-  describe(`Check cell's owner`, () => {
-    it('Set owner into available cell', () => {
+  describe(`Check cell's content`, () => {
+    it('Set content into available cell', () => {
       const field = new Field<'x' | 'o'>(3);
 
       expect(
-        field.getCell(1, 1).getOwner(),
-        `Cell by index {1;1} hasn't owner`
+        field.getCell(1, 1).getContent(),
+        `Cell by index {1;1} hasn't content`
       ).toBeNull();
       expect(
-        field.getCell(1, 1).setOwner('x'),
-        `Set owner into cell by index {1;1} is success`
+        field.getCell(1, 1).setContent('x'),
+        `Set content into cell by index {1;1} is success`
       ).toBeTruthy();
       expect(
-        field.getCell(1, 1,).getOwner(),
-        `Cell by index {1;1} set owner 'x' (it was added at previous step)`
+        field.getCell(1, 1,).getContent(),
+        `Cell by index {1;1} set content 'x' (it was added at previous step)`
       ).toBe('x');
       expect(
-        field.getCell(1, 1).setOwner('o'),
-        `Set owner into cell by index {1;1} is failed: owner was set at 2 steps before`
+        field.getCell(1, 1).setContent('o'),
+        `Set content into cell by index {1;1} is failed: content was set at 2 steps before`
       ).toBeFalsy();
     });
 
-    it('Set owner into unavailable cell', () => {
+    it('Set content into unavailable cell', () => {
       const field = new Field<'x' | 'o'>(3);
       expect(
-        field.getCell(4, 4).getOwner(),
-        `Cell by index {4;4} hasn't owner: it's cell is unavailable`
+        field.getCell(4, 4).getContent(),
+        `Cell by index {4;4} hasn't content: it's cell is unavailable`
       ).toBeNull();
       expect(
-        field.getCell(4, 4).setOwner('x'),
-        `Set owner into cell by index {4;4} is failed: it's cell is unavailable`
+        field.getCell(4, 4).setContent('x'),
+        `Set content into cell by index {4;4} is failed: it's cell is unavailable`
       ).toBeFalsy();
     });
   });
