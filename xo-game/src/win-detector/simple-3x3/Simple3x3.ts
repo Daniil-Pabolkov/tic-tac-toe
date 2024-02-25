@@ -82,7 +82,7 @@ export class Simple3x3<PlayerMarker> extends WinnerDetectorBase<PlayerMarker> {
    }
 
    detectByTemplate(template: CellSequence): PlayerMarker | null {
-      const who: PlayerMarker | null = null;
+      let who: PlayerMarker | null = null;
 
       for (const [row, col] of template) {
          const cellMarker = this.field.getCell(row, col).getContent();
@@ -90,6 +90,8 @@ export class Simple3x3<PlayerMarker> extends WinnerDetectorBase<PlayerMarker> {
          if (who !== null && cellMarker !== who) {
             return null;
          }
+
+         who = cellMarker;
       }
 
       return who;
@@ -103,9 +105,9 @@ export class Simple3x3<PlayerMarker> extends WinnerDetectorBase<PlayerMarker> {
     */
    private readonly Templates: CellSequence[] = [
       // Горизонтальные
-      [[0, 0], [0, 1], [0, 1]],
-      [[1, 0], [1, 1], [1, 1]],
-      [[2, 0], [2, 1], [2, 1]],
+      [[0, 0], [0, 1], [0, 2]],
+      [[1, 0], [1, 1], [1, 2]],
+      [[2, 0], [2, 1], [2, 2]],
       // Вертикальные
       [[0, 0], [1, 0], [2, 0]],
       [[0, 1], [1, 1], [2, 1]],
